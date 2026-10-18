@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff3f6" />
+  <title>Chúc mừng ngày phụ nữ Việt Nam 20/10</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --pink: light-dark(#d84f79, #ff8eae);
+      --pink-deep: light-dark(#a82f58, #ffc0d2);
+      --ink: light-dark(#6b3147, #ffe7ee);
+      --muted: light-dark(#946878, #d9a7b7);
+      --paper: light-dark(#fffafc, #2c1721);
+      --line: light-dark(#f4d4df, #603143);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: light-dark(#fff2f6, #1b1017);
+      color: var(--ink);
+      font-family: "Noto Sans", "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+    }
+    button { font: inherit; }
+    .app {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 0%, #ffe0ea 0, #fff7fa 43%, #fff0f5 100%);
+      isolation: isolate;
+    }
+    .app::before, .app::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 290px;
+      height: 290px;
+      border-radius: 50%;
+      filter: blur(2px);
+      pointer-events: none;
+      opacity: .55;
+    }
+    .app::before { top: 70px; left: -190px; background: #ffc7d8; }
+    .app::after { right: -190px; top: 350px; background: #f8bfd2; }
+    .topbar {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 9px; color: var(--pink-deep); font-size: .9rem; font-weight: 800; letter-spacing: .02em; }
+    .brand-heart { font-size: 1.35rem; animation: heartbeat 1.8s infinite; }
+    .music-button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: light-dark(#ffffffbb, #321c27);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: .86rem;
+      box-shadow: 0 5px 18px #a33d5c0c;
+      transition: transform .2s, background .2s;
+    }
+    .music-button:hover { transform: translateY(-2px); }
+    main { width: min(100% - 32px, 760px); margin: 0 auto; padding: 16px 0 60px; text-align: center; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--pink-deep);
+      background: light-dark(#ffffffa8, #321c27);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 22px auto 12px; max-width: 700px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.25rem, 7vw, 4.8rem); line-height: 1.08; letter-spacing: -.045em; font-weight: 700; color: var(--pink-deep); }
+    h1 span { display: block; font-style: italic; color: var(--pink); }
+    .subtitle { max-width: 510px; margin: 0 auto; color: var(--muted); font-size: clamp(.95rem, 2.5vw, 1.08rem); line-height: 1.75; }
+    .bouquet { position: relative; width: min(100%, 430px); height: 180px; margin: 16px auto -2px; display: grid; place-items: center; }
+    .bouquet .halo { position: absolute; width: 180px; height: 150px; background: radial-gradient(ellipse, #f9b2c9aa, #f9b2c900 70%); }
+    .rose { position: absolute; filter: drop-shadow(0 10px 9px #9d31561b); animation: sway 4s ease-in-out infinite; }
+    .rose.one { font-size: 5.4rem; left: calc(50% - 40px); top: 7px; transform: rotate(-8deg); }
+    .rose.two { font-size: 3.6rem; left: calc(50% - 112px); top: 53px; animation-delay: -.8s; }
+    .rose.three { font-size: 3.7rem; left: calc(50% + 37px); top: 49px; animation-delay: -1.4s; }
+    .rose.four { font-size: 2rem; left: calc(50% - 135px); top: 17px; animation-delay: -.3s; }
+    .rose.five { font-size: 2.2rem; left: calc(50% + 91px); top: 15px; animation-delay: -1.9s; }
+    .stem { position: absolute; width: 3px; height: 60px; border-radius: 4px; background: #7eaa79; transform-origin: top; top: 92px; left: 50%; opacity: .65; }
+    .stem.a { transform: rotate(-24deg); }
+    .stem.b { transform: rotate(22deg); }
+    .letter-card {
+      position: relative;
+      max-width: 590px;
+      margin: 0 auto;
+      padding: clamp(22px, 5vw, 38px);
+      border: 1px solid light-dark(#f2d3de, #593142);
+      border-radius: 28px;
+      background: light-dark(#fffdfdcc, #2b1721e8);
+      box-shadow: 0 24px 70px #a53e5f12, inset 0 1px 0 #ffffffa0;
+      backdrop-filter: blur(10px);
+    }
+    .card-top { color: var(--pink); font-size: 1.7rem; letter-spacing: .3rem; }
+    .dear { margin: 12px 0 14px; font-family: Georgia, serif; color: var(--pink-deep); font-size: clamp(1.5rem, 4vw, 2rem); }
+    .message { margin: 0 auto; max-width: 455px; color: var(--ink); font-size: clamp(1rem, 2.7vw, 1.12rem); line-height: 1.9; }
+    .signature { margin-top: 24px; color: var(--pink); font-family: Georgia, serif; font-size: 1.18rem; font-style: italic; }
+    .action-row { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .primary, .secondary { border-radius: 999px; padding: 13px 21px; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+    .primary { border: 0; color: #fff; background: linear-gradient(135deg, #e87598, #c74370); box-shadow: 0 9px 22px #c7437033; font-weight: 750; }
+    .secondary { border: 1px solid var(--line); background: light-dark(#ffffffb5, #321c27); color: var(--pink-deep); }
+    .primary:hover, .secondary:hover { transform: translateY(-2px); }
+    .secret { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .7s ease, opacity .5s ease, margin .5s ease; color: var(--pink-deep); }
+    .secret.open { max-height: 320px; opacity: 1; margin-top: 22px; }
+    .secret p { margin: 0; font-family: Georgia, serif; font-size: 1.12rem; line-height: 1.8; }
+    .invite-question { margin-top: 12px !important; font-family: "Noto Sans", "DejaVu Sans", Arial, sans-serif !important; font-size: 1rem !important; }
+    .invite-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+    .invite-result { margin-top: 16px; font-weight: 800; color: var(--pink); line-height: 1.7; }
+    .invite-actions button { min-width: 120px; }
+    .footer { margin-top: 28px; color: var(--muted); font-size: .83rem; }
+    .footer span { color: var(--pink); }
+    .float-layer { position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+    .floaty { position: absolute; bottom: -35px; animation: float-up var(--duration, 5s) linear forwards; opacity: 0; font-size: var(--size, 20px); filter: drop-shadow(0 3px 4px #c743701b); }
+    .toast { position: fixed; z-index: 10; left: 50%; bottom: 24px; transform: translate(-50%, 20px); padding: 12px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--pink-deep); box-shadow: 0 10px 35px #60263b1c; opacity: 0; pointer-events: none; transition: .3s; white-space: nowrap; font-size: .9rem; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @keyframes float-up { 0% { transform: translate3d(0, 0, 0) rotate(0); opacity: 0; } 12% { opacity: .88; } 85% { opacity: .7; } 100% { transform: translate3d(var(--drift, 25px), -110vh, 0) rotate(35deg); opacity: 0; } }
+    @keyframes heartbeat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.18); } 24% { transform: scale(1); } 36% { transform: scale(1.12); } }
+    @keyframes sway { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
+    @media (max-width: 480px) {
+      .topbar { padding: 15px 16px; }
+      .brand { font-size: .78rem; }
+      .music-button { padding: 9px 11px; font-size: .78rem; }
+      main { width: min(100% - 24px, 760px); padding-top: 14px; }
+      .bouquet { height: 155px; margin-top: 10px; }
+      .rose.one { font-size: 4.6rem; }
+      .rose.two, .rose.three { font-size: 3rem; }
+      .rose.four, .rose.five { font-size: 1.7rem; }
+      .letter-card { border-radius: 23px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-heart">♥</span><span>MỘT CHÚT YÊU THƯƠNG</span></div>
+      <button class="music-button" id="musicToggle" type="button" aria-pressed="false">♫ Bật nhạc</button>
+    </header>
+    <main>
+      <div class="eyebrow">✿ 20 · 10 · 2026 ✿</div>
+      <h1>Chúc mừng ngày <span>phụ nữ Việt Nam 20/10</span></h1>
+      <p class="subtitle">Một chút yêu thương anh dành riêng cho em trong ngày đặc biệt này. ♡</p>
+      <div class="bouquet" aria-label="Bó hoa hồng dễ thương">
+        <div class="halo"></div><div class="stem a"></div><div class="stem b"></div>
+        <span class="rose four">🌸</span><span class="rose two">🌹</span><span class="rose one">🌹</span><span class="rose three">🌹</span><span class="rose five">💗</span>
+      </div>
+      <section class="letter-card" aria-labelledby="dear">
+        <div class="card-top">♡ ✧ ♡</div>
+        <h2 class="dear" id="dear">Gửi người anh thương,</h2>
+        <p class="message">Cảm ơn em vì đã xuất hiện trong cuộc đời của anh. Anh mong rằng những ngày sau khi ở bên cạnh nhau chúng mình sẽ vui vẻ, hạnh phúc hơn khi luôn có anh ở cạnh bên. Anh yêu em.</p>
+        <div class="action-row">
+          <button class="primary" id="heartButton" type="button">Gửi em một cái ôm 💗</button>
+          <button class="secondary" id="secretButton" type="button" aria-expanded="false">Một điều bí mật ✉</button>
+        </div>
+        <div class="secret" id="secretNote" aria-live="polite">
+          <p class="invite-question">Nàng có đồng ý đi chơi với anh vào tối nay hong ạ. Nếu có thì hãy bấm nút nha</p>
+          <div class="invite-actions" id="inviteActions">
+            <button class="primary" id="yesButton" type="button">Đồng ý 💗</button>
+            <button class="secondary" id="noButton" type="button">Không đồng ý 🙈</button>
+          </div>
+          <p class="invite-result" id="inviteResult" hidden role="status">Thành công! Tối nay hẹn nàng nha 🌹💗</p>
+        </div>
+      </section>
+      <p class="footer">Làm riêng cho <span>Diệu Linh</span>, bằng tất cả sự dịu dàng của anh. ♥</p>
+    </main>
+    <div class="float-layer" id="floatLayer" aria-hidden="true"></div>
+    <div class="toast" id="toast" role="status">Một cái ôm thật chặt gửi đến bé yêu! 💗</div>
+  </div>
+  <script>
+    (() => {
+      const layer = document.getElementById('floatLayer');
+      const heartButton = document.getElementById('heartButton');
+      const secretButton = document.getElementById('secretButton');
+      const secretNote = document.getElementById('secretNote');
+      const yesButton = document.getElementById('yesButton');
+      const noButton = document.getElementById('noButton');
+      const inviteActions = document.getElementById('inviteActions');
+      const inviteResult = document.getElementById('inviteResult');
+      const toast = document.getElementById('toast');
+      const musicToggle = document.getElementById('musicToggle');
+      let toastTimer;
+      let audioContext = null;
+      let musicTimer = null;
+      let noteIndex = 0;
+      const notes = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 880, 698.46];
+
+      function floatHeart(count = 12) {
+        const symbols = ['♥', '♡', '💗', '🌸', '✿', '💕'];
+        for (let i = 0; i < count; i++) {
+          const item = document.createElement('span');
+          item.className = 'floaty';
+          item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          item.style.left = (5 + Math.random() * 90) + 'vw';
+          item.style.setProperty('--duration', (4 + Math.random() * 3.5) + 's');
+          item.style.setProperty('--size', (15 + Math.random() * 19) + 'px');
+          item.style.setProperty('--drift', ((Math.random() - .5) * 130) + 'px');
+          layer.appendChild(item);
+          item.addEventListener('animationend', () => item.remove(), { once: true });
+        }
+      }
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+      }
+      heartButton.addEventListener('click', () => {
+        floatHeart(28);
+        showToast('Một cái ôm thật chặt gửi đến bé yêu! 💗');
+      });
+      secretButton.addEventListener('click', () => {
+        const isOpen = secretNote.classList.toggle('open');
+        secretButton.setAttribute('aria-expanded', String(isOpen));
+        secretButton.textContent = isOpen ? 'Gấp thư lại ♡' : 'Một điều bí mật ✉';
+        if (isOpen) floatHeart(10);
+      });
+      function acceptInvitation() {
+        inviteActions.hidden = true;
+        inviteResult.hidden = false;
+        floatHeart(35);
+        showToast('Đã chốt kèo đi chơi tối nay! 💗');
+      }
+      yesButton.addEventListener('click', acceptInvitation);
+      noButton.addEventListener('click', () => {
+        if (noButton.textContent.trim() === 'Không đồng ý 🙈') {
+          noButton.textContent = 'Đồng ý 💗';
+          noButton.classList.remove('secondary');
+          noButton.classList.add('primary');
+          showToast('Hihi, nút đã đổi thành đồng ý rồi nha 💗');
+        } else {
+          acceptInvitation();
+        }
+      });
+      function playNote(frequency) {
+        if (!audioContext || audioContext.state !== 'running') return;
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.value = frequency;
+        gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.075, audioContext.currentTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.48);
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.5);
+      }
+      async function toggleMusic() {
+        if (musicTimer) {
+          clearInterval(musicTimer);
+          musicTimer = null;
+          if (audioContext && audioContext.state === 'running') await audioContext.suspend();
+          musicToggle.textContent = '♫ Bật nhạc';
+          musicToggle.setAttribute('aria-pressed', 'false');
+          return;
+        }
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) throw new Error('Audio unavailable');
+          if (!audioContext) audioContext = new AudioCtx();
+          await audioContext.resume();
+          playNote(notes[noteIndex++ % notes.length]);
+          musicTimer = setInterval(() => {
+            playNote(notes[noteIndex++ % notes.length]);
+          }, 520);
+          musicToggle.textContent = '♫ Tắt nhạc';
+          musicToggle.setAttribute('aria-pressed', 'true');
+          floatHeart(6);
+        } catch (error) {
+          showToast('Trình duyệt chưa hỗ trợ phát nhạc trên thiết bị này.');
+        }
+      }
+      musicToggle.addEventListener('click', toggleMusic);
+      // A small, gentle opening flourish; the soundtrack itself only starts after a tap.
+      setTimeout(() => floatHeart(7), 700);
+    })();
+  </script>
+</body>
+</html>
